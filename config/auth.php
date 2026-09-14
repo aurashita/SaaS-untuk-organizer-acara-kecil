@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Organizer;
 
 return [
 
@@ -40,7 +40,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'organizers',
         ],
     ],
 
@@ -62,14 +62,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'organizers' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
+            'model' => env('AUTH_MODEL', Organizer::class),
         ],
 
-        // 'users' => [
+        // 'organizers' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'organizers',
         // ],
     ],
 
@@ -94,7 +94,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'organizers',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
