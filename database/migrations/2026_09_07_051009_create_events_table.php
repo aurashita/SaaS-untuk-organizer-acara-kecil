@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
     $table->id();
-    $table->foreignId('organizer_id')->constrained('users')->onDelete('cascade'); // TODO: ganti ke 'organizers' nanti
+    $table->foreignId('organizer_id')->constrained('organizers')->onDelete('cascade'); // TODO: ganti ke 'organizers' nanti
     $table->string('name');
     $table->dateTime('date');
     $table->string('location');
