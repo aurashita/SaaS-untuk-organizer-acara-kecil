@@ -7,6 +7,7 @@ use App\Models\Participant;
 use App\Models\EventRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class RegistrationController extends Controller
 {
@@ -33,6 +34,8 @@ class RegistrationController extends Controller
             'attendance_status' => 'belum_hadir',
         ]);
 
-        return view('registration.success', compact('registration'));
+        $qrCode = QrCode::size(250)->generate($registration->qr_code_hash);
+
+        return view('registration.success', compact('registration', 'qrCode'));
     }
 }
