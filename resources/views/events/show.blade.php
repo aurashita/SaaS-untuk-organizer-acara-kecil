@@ -1,7 +1,12 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <h1 class="text-2xl font-bold mb-2">{{ $event->name }}</h1>
+            <div class="flex justify-between items-center mb-2">
+                <h1 class="text-2xl font-bold">{{ $event->name }}</h1>
+                <a href="{{ route('scanner.index') }}" class="bg-purple-600 text-white px-4 py-2 rounded">
+                    Scan Kehadiran
+                </a>
+            </div>
             <p class="mb-6 text-gray-600">{{ $event->date }} — {{ $event->location }}</p>
 
             <div class="bg-white shadow rounded p-4">
