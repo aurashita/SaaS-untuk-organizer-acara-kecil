@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('events', EventController::class);
+
+    Route::post('/attendance/scan', [AttendanceController::class, 'scan'])->name('attendance.scan');
 });
 
 Route::get('/daftar/{event}', [RegistrationController::class, 'show'])->name('registration.show');
