@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +20,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('events', EventController::class);
 });
+
+Route::get('/daftar/{event}', [RegistrationController::class, 'show'])->name('registration.show');
+Route::post('/daftar/{event}', [RegistrationController::class, 'store'])->name('registration.store');
 
 require __DIR__.'/auth.php';
