@@ -46,9 +46,10 @@ class EventController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
+{
+    $event = auth()->user()->events()->with('registrations.participant')->findOrFail($id);
+    return view('events.show', compact('event'));
+}
 
     /**
      * Show the form for editing the specified resource.
