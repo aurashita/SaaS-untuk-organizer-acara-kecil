@@ -25,4 +25,11 @@ class Event extends Model
     {
         return $this->hasMany(EventRegistration::class);
     }
+
+    protected function casts(): array
+    {
+        return [
+            'date' => 'datetime',
+        ];
+    }
 }

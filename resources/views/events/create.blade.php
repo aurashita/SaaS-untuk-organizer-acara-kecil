@@ -1,27 +1,17 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 bg-white shadow rounded p-6">
-            <form method="POST" action="{{ route('events.store') }}">
-                @csrf
-                <label>Nama Event</label>
-                <input type="text" name="name" class="w-full border rounded p-2 mb-3" required>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Buat Event Baru</h2>
+    </x-slot>
 
-                <label>Tanggal & Waktu</label>
-                <input type="datetime-local" name="date" class="w-full border rounded p-2 mb-3" required>
+    <div class="py-8">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <form method="POST" action="{{ route('events.store') }}" class="bg-white shadow-sm rounded-lg p-6 space-y-4">
+                @include('events._form')
 
-                <label>Lokasi</label>
-                <input type="text" name="location" class="w-full border rounded p-2 mb-3" required>
-
-                <label>Deskripsi</label>
-                <textarea name="description" class="w-full border rounded p-2 mb-3"></textarea>
-
-                <label>Kuota Peserta</label>
-                <input type="number" name="quota" class="w-full border rounded p-2 mb-3" required>
-
-                <label>Harga (kosongkan jika gratis)</label>
-                <input type="number" name="price" class="w-full border rounded p-2 mb-3">
-
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Simpan</button>
+                <div class="flex justify-end gap-2">
+                    <a href="{{ route('events.index') }}" class="px-4 py-2 text-sm bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Batal</a>
+                    <button type="submit" class="px-4 py-2 text-sm bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan</button>
+                </div>
             </form>
         </div>
     </div>
