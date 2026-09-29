@@ -3,14 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use Database\Factories\OrganizerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Organizer extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
+    /** @use HasFactory<OrganizerFactory> */
     use HasFactory, Notifiable;
 
     /**
