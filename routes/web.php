@@ -28,5 +28,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/daftar/{event}', [RegistrationController::class, 'show'])->name('registration.show');
 Route::post('/daftar/{event}', [RegistrationController::class, 'store'])->name('registration.store');
+Route::get('/tiket/{registration:qr_code_hash}', [RegistrationController::class, 'success'])->name('registration.success');
 
 require __DIR__.'/auth.php';
