@@ -5,10 +5,14 @@
 
     <div class="py-8">
         <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm rounded-lg p-4">
-                <p class="text-sm text-gray-600 mb-3">Arahkan kamera ke QR Code pada e-ticket peserta.</p>
-                <div id="reader" class="w-full"></div>
-                <div id="result" class="mt-4 p-4 rounded-md hidden"></div>
+            <div class="bg-white shadow-sm rounded-xl p-5">
+                <p class="text-sm text-gray-600 mb-4">
+                    Arahkan kamera ke QR Code pada e-ticket peserta. Status kehadiran akan diperbarui otomatis.
+                </p>
+
+                <div id="reader" class="w-full rounded-lg overflow-hidden border border-gray-200"></div>
+
+                <div id="result" class="mt-4 p-4 rounded-lg hidden text-sm font-medium text-center"></div>
             </div>
         </div>
     </div>
@@ -22,13 +26,13 @@
         function showResult(success, message) {
             resultDiv.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
             resultDiv.classList.add(...(success ? ['bg-green-100', 'text-green-800'] : ['bg-red-100', 'text-red-800']));
-            resultDiv.innerText = message;
+            resultDiv.innerText = (success ? '✅ ' : '⚠️ ') + message;
         }
 
         function onScanSuccess(decodedText) {
             if (isProcessing) return;
             isProcessing = true;
-            html5QrCode.pause(true); // hentikan kamera sementara
+            html5QrCode.pause(true);
 
             fetch("{{ route('attendance.scan') }}", {
                 method: "POST",
@@ -43,7 +47,6 @@
             .then(data => showResult(data.success, data.message))
             .catch(() => showResult(false, 'Terjadi kesalahan jaringan. Coba scan ulang.'))
             .finally(() => {
-                // lanjutkan scan setelah 3 detik
                 setTimeout(() => {
                     html5QrCode.resume();
                     isProcessing = false;
