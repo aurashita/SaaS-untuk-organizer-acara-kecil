@@ -5,12 +5,12 @@
 
     <div class="py-8">
         <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('events.store') }}" class="bg-white shadow-sm rounded-lg p-6 space-y-4">
+            <form method="POST" action="{{ route('events.store') }}" class="bg-white shadow-sm rounded-xl p-6 sm:p-8 space-y-6">
                 @include('events._form')
 
-                <div class="flex justify-end gap-2">
-                    <a href="{{ route('events.index') }}" class="px-4 py-2 text-sm bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Batal</a>
-                    <button type="submit" class="px-4 py-2 text-sm bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan</button>
+                <div class="flex justify-end gap-2 pt-2 border-t">
+                    <a href="{{ route('events.index') }}" class="px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Batal</a>
+                    <button type="submit" class="px-4 py-2 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Simpan Event</button>
                 </div>
             </form>
         </div>
