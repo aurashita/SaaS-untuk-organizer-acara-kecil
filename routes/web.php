@@ -12,7 +12,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $events = auth()->user()->events()->withCount('registrations')->latest()->get();
+
+    return view('dashboard', [
+        'totalEvents' => $events->count(),
+        'totalPeserta' => $events->sum('registrations_count'),
+        'totalHadir' => auth()->user()->events()
+            ->withCount(['registrations' => fn ($q) => $q->where('attendance_status', 'hadir')])
+            ->get()->sum('registrations_count'),
+        'eventTerbaru' => $events->take(5),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
