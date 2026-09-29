@@ -13,14 +13,16 @@ class AttendanceController extends Controller
             'qr_code_hash' => 'required|string',
         ]);
 
+        // Hanya tiket dari acara milik organizer yang sedang login
         $registration = EventRegistration::with('participant')
             ->where('qr_code_hash', $request->qr_code_hash)
+            ->whereHas('event', fn ($q) => $q->where('organizer_id', auth()->id()))
             ->first();
 
         if (!$registration) {
             return response()->json([
                 'success' => false,
-                'message' => 'QR Code tidak ditemukan / tidak valid.',
+                'message' => 'QR Code tidak ditemukan atau bukan tiket untuk acara Anda.',
             ], 404);
         }
 
