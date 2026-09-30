@@ -13,22 +13,22 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-white rounded-xl shadow-sm p-5">
                     <p class="text-sm text-gray-500">Total Event</p>
-                    <p class="text-3xl font-bold text-indigo-600 mt-1">{{ $totalEvents }}</p>
+                    <p class="text-3xl font-bold text-pink-600 mt-1">{{ $totalEvents }}</p>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm p-5">
                     <p class="text-sm text-gray-500">Total Peserta Terdaftar</p>
-                    <p class="text-3xl font-bold text-green-600 mt-1">{{ $totalPeserta }}</p>
+                    <p class="text-3xl font-bold text-yellow-600 mt-1">{{ $totalPeserta }}</p>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm p-5">
                     <p class="text-sm text-gray-500">Sudah Check-in</p>
-                    <p class="text-3xl font-bold text-purple-600 mt-1">{{ $totalHadir }}</p>
+                    <p class="text-3xl font-bold text-pink-600 mt-1">{{ $totalHadir }}</p>
                 </div>
             </div>
 
             <div class="bg-white rounded-xl shadow-sm p-5">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="font-semibold text-gray-800">Event Terbaru</h2>
-                    <a href="{{ route('events.index') }}" class="text-sm text-indigo-600 hover:underline">Lihat semua</a>
+                    <a href="{{ route('events.index') }}" class="text-sm text-pink-600 hover:underline">Lihat semua</a>
                 </div>
 
                 @forelse ($eventTerbaru as $event)
@@ -42,7 +42,7 @@
                 @empty
                     <div class="text-center py-8">
                         <p class="text-gray-500 mb-3">Kamu belum punya event.</p>
-                        <a href="{{ route('events.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700">
+                        <a href="{{ route('events.create') }}" class="inline-flex items-center px-4 py-2 bg-pink-600 text-white text-sm font-medium rounded-md hover:bg-pink-700">
                             + Buat Event Pertamamu
                         </a>
                     </div>

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="-m-6 mb-0 sm:-m-8 sm:mb-0 bg-gradient-to-br from-green-500 to-emerald-600 text-white p-6 sm:p-8 rounded-t-xl text-center">
+    <div class="-m-6 mb-0 sm:-m-8 sm:mb-0 bg-gradient-to-br from-yellow-500 to-pink-600 text-white p-6 sm:p-8 rounded-t-xl text-center">
         <div class="text-3xl mb-1"></div>
         <h1 class="text-lg font-bold">Pendaftaran Berhasil!</h1>
     </div>
@@ -19,7 +19,7 @@
         <p class="text-xs text-gray-400 break-all font-mono">{{ $registration->qr_code_hash }}</p>
 
         <button type="button" onclick="downloadTicket()"
-            class="w-full px-4 py-2.5 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700">
+            class="w-full px-4 py-2.5 bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700">
             ⬇ Unduh E-Ticket (PNG)
         </button>
 

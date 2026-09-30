@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-2">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Daftar Event</h2>
-            <a href="{{ route('events.create') }}" class="inline-flex items-center gap-1 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow-sm hover:bg-indigo-700 hover:shadow-md transition">
+            <a href="{{ route('events.create') }}" class="inline-flex items-center gap-1 px-4 py-2 bg-pink-600 text-white text-sm font-medium rounded-lg shadow-sm hover:bg-pink-700 hover:shadow-md transition">
                 <span class="text-lg leading-none">+</span> Buat Event
             </a>
         </div>
@@ -11,7 +11,7 @@
     <div class="py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
             @if (session('success'))
-                <div class="p-4 bg-green-100 text-green-800 rounded-lg text-sm">{{ session('success') }}</div>
+                <div class="p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm">{{ session('success') }}</div>
             @endif
 
             @forelse ($events as $event)
@@ -20,7 +20,7 @@
                     $penuh = $event->registrations->count() >= $event->quota;
                     $persen = $event->quota > 0 ? min(100, round($event->registrations->count() / $event->quota * 100)) : 0;
                 @endphp
-                <div class="bg-white shadow-sm rounded-xl p-5 border-l-4 {{ $sudahLewat ? 'border-gray-300' : ($penuh ? 'border-red-400' : 'border-green-400') }} hover:shadow-md transition">
+                <div class="bg-white shadow-sm rounded-xl p-5 border-l-4 {{ $sudahLewat ? 'border-gray-300' : ($penuh ? 'border-red-400' : 'border-yellow-400') }} hover:shadow-md transition">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <a href="{{ route('events.show', $event) }}" class="block flex-1 min-w-0">
                             <div class="flex items-center gap-2 flex-wrap">
@@ -30,7 +30,7 @@
                                 @elseif ($penuh)
                                     <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-red-100 text-red-600">Kuota Penuh</span>
                                 @else
-                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-green-100 text-green-700">Terbuka</span>
+                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Terbuka</span>
                                 @endif
                             </div>
 
@@ -51,7 +51,7 @@
                                     <span>{{ $persen }}%</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                    <div class="h-full {{ $penuh ? 'bg-red-400' : 'bg-indigo-500' }}" style="width: {{ $persen }}%"></div>
+                                    <div class="h-full {{ $penuh ? 'bg-red-400' : 'bg-pink-500' }}" style="width: {{ $persen }}%"></div>
                                 </div>
                             </div>
                         </a>
@@ -69,7 +69,7 @@
             @empty
                 <div class="bg-white shadow-sm rounded-xl p-10 text-center">
                     <p class="text-gray-500 mb-3">Belum ada event yang kamu buat.</p>
-                    <a href="{{ route('events.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">
+                    <a href="{{ route('events.create') }}" class="inline-flex items-center px-4 py-2 bg-pink-600 text-white text-sm font-medium rounded-lg hover:bg-pink-700">
                         + Buat Event Pertama
                     </a>
                 </div>

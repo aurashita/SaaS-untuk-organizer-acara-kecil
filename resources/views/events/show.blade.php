@@ -3,7 +3,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $event->name }}</h2>
             <div class="flex gap-2">
-                <a href="{{ route('scanner.index') }}" class="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700">Scan Kehadiran</a>
+                <a href="{{ route('scanner.index') }}" class="px-4 py-2 text-sm bg-pink-600 text-white rounded-lg hover:bg-pink-700">Scan Kehadiran</a>
                 <a href="{{ route('events.edit', $event) }}" class="px-4 py-2 text-sm bg-yellow-500 text-white rounded-lg hover:bg-yellow-600">Edit</a>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div class="py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             @if (session('success'))
-                <div class="p-4 bg-green-100 text-green-800 rounded-md text-sm">{{ session('success') }}</div>
+                <div class="p-4 bg-yellow-100 text-yellow-800 rounded-md text-sm">{{ session('success') }}</div>
             @endif
 
             <div class="bg-white shadow-sm rounded-xl p-5 space-y-3">
@@ -32,7 +32,7 @@
                         <span>{{ $jumlahTerdaftar }} / {{ $event->quota }}</span>
                     </div>
                     <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div class="h-full bg-indigo-500" style="width: {{ $persenKuota }}%"></div>
+                        <div class="h-full bg-pink-500" style="width: {{ $persenKuota }}%"></div>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <input id="public-link" type="text" readonly value="{{ route('registration.show', $event) }}"
                         class="flex-1 rounded-lg border-gray-300 bg-gray-50 text-sm">
                     <button type="button" id="copy-btn" onclick="copyLink()"
-                        class="px-4 py-2 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Salin Link</button>
+                        class="px-4 py-2 text-sm bg-pink-600 text-white rounded-lg hover:bg-pink-700">Salin Link</button>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                 <div class="flex items-center justify-between mb-3 gap-2 flex-wrap">
                     <h3 class="font-semibold">Daftar Peserta ({{ $jumlahTerdaftar }})</h3>
                     <input type="text" id="cari-peserta" oninput="cariPeserta()" placeholder="Cari nama peserta..."
-                        class="rounded-lg border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        class="rounded-lg border-gray-300 text-sm focus:border-pink-500 focus:ring-pink-500">
                 </div>
 
                 <div id="daftar-peserta">
@@ -62,7 +62,7 @@
                         @endphp
                         <div class="peserta-item border-b last:border-0 py-3 flex items-center justify-between gap-3">
                             <div class="flex items-center gap-3 min-w-0">
-                                <div class="w-9 h-9 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm font-semibold shrink-0">
+                                <div class="w-9 h-9 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center text-sm font-semibold shrink-0">
                                     {{ $inisial }}
                                 </div>
                                 <div class="min-w-0">
@@ -70,7 +70,7 @@
                                     <p class="text-sm text-gray-500 truncate">{{ $registration->participant->email }}</p>
                                 </div>
                             </div>
-                            <span class="text-xs font-medium px-2.5 py-1 rounded-full shrink-0 {{ $hadir ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' }}">
+                            <span class="text-xs font-medium px-2.5 py-1 rounded-full shrink-0 {{ $hadir ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-500' }}">
                                 {{ $hadir ? 'Sudah Hadir' : 'Belum Hadir' }}
                             </span>
                         </div>

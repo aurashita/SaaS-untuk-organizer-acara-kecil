@@ -11,7 +11,7 @@
 
                 <div class="flex justify-end gap-2 pt-2 border-t">
                     <a href="{{ route('events.show', $event) }}" class="px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Batal</a>
-                    <button type="submit" class="px-4 py-2 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Simpan Perubahan</button>
+                    <button type="submit" class="px-4 py-2 text-sm bg-pink-600 text-white rounded-lg hover:bg-pink-700">Simpan Perubahan</button>
                 </div>
             </form>
         </div>

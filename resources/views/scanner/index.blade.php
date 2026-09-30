@@ -7,11 +7,11 @@
         <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
             <div class="bg-white shadow-sm rounded-xl p-5">
                 <p class="text-sm text-gray-600 mb-4 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <svg class="w-5 h-5 text-pink-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     Arahkan kamera ke QR Code pada e-ticket peserta.
                 </p>
 
-                <div class="relative rounded-lg overflow-hidden border-2 border-indigo-200">
+                <div class="relative rounded-lg overflow-hidden border-2 border-pink-200">
                     <div id="reader" class="w-full"></div>
                 </div>
 
@@ -35,14 +35,14 @@
         let isProcessing = false;
         let riwayatKosong = true;
 
-        function showResult(success, message) {
-            resultDiv.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
-            resultDiv.classList.add(...(success ? ['bg-green-100', 'text-green-800'] : ['bg-red-100', 'text-red-800']));
-            resultDiv.innerText = (success ? '✅ ' : '⚠️ ') + message;
-            tambahRiwayat(success, message);
+        function showResult(success, mesyellow) {
+            resultDiv.classList.remove('hidden', 'bg-yellow-100', 'text-yellow-800', 'bg-red-100', 'text-red-800');
+            resultDiv.classList.add(...(success ? ['bg-yellow-100', 'text-yellow-800'] : ['bg-red-100', 'text-red-800']));
+            resultDiv.innerText = (success ? '✅ ' : '⚠️ ') + mesyellow;
+            tambahRiwayat(success, mesyellow);
         }
 
-        function tambahRiwayat(success, message) {
+        function tambahRiwayat(success, mesyellow) {
             if (riwayatKosong) {
                 riwayatEl.innerHTML = '';
                 riwayatKosong = false;
@@ -50,7 +50,7 @@
             const item = document.createElement('li');
             item.className = 'flex items-center gap-2';
             const waktu = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            item.innerHTML = `<span>${success ? '✅' : '⚠️'}</span><span class="text-gray-400">${waktu}</span><span class="flex-1 truncate">${message}</span>`;
+            item.innerHTML = `<span>${success ? '✅' : '⚠️'}</span><span class="text-gray-400">${waktu}</span><span class="flex-1 truncate">${mesyellow}</span>`;
             riwayatEl.prepend(item);
         }
 
@@ -69,7 +69,7 @@
                 body: JSON.stringify({ qr_code_hash: decodedText }),
             })
             .then(response => response.json())
-            .then(data => showResult(data.success, data.message))
+            .then(data => showResult(data.success, data.mesyellow))
             .catch(() => showResult(false, 'Terjadi kesalahan jaringan. Coba scan ulang.'))
             .finally(() => {
                 setTimeout(() => {
