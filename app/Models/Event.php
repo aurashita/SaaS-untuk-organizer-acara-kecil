@@ -14,6 +14,7 @@ class Event extends Model
         'description',
         'quota',
         'price',
+        'is_private',
     ];
 
     public function organizer()
@@ -26,10 +27,23 @@ class Event extends Model
         return $this->hasMany(EventRegistration::class);
     }
 
+    public function invitations()
+    {
+        return $this->hasMany(EventInvitation::class);
+    }
+
+    public function isEmailInvited(string $email): bool
+    {
+        return $this->invitations()
+            ->whereRaw('LOWER(email) = ?', [strtolower($email)])
+            ->exists();
+    }
+
     protected function casts(): array
     {
         return [
             'date' => 'datetime',
+            'is_private' => 'boolean',
         ];
     }
 }
