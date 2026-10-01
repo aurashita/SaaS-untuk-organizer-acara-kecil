@@ -1,7 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $event->name }}</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex items-center gap-2">
+    {{ $event->name }}
+    @if ($event->is_private)
+        <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">🔒 Privat</span>
+    @endif
+</h2>
             <div class="flex gap-2">
                 <a href="{{ route('scanner.index') }}" class="px-4 py-2 text-sm bg-pink-600 text-white rounded-lg hover:bg-pink-700">Scan Kehadiran</a>
                 <a href="{{ route('events.edit', $event) }}" class="px-4 py-2 text-sm bg-yellow-500 text-white rounded-lg hover:bg-yellow-600">Edit</a>
@@ -21,7 +26,10 @@
             @endif
 
             <div class="bg-white shadow-sm rounded-xl p-5 space-y-3">
-                <p class="text-gray-600">📅 {{ $event->date->format('d M Y, H:i') }} · 📍 {{ $event->location }}</p>
+                <p class="text-gray-600">🗓 {{ $event->date->format('d M Y, H:i') }} · ⚲ {{ $event->location }}</p>
+                @if ($event->is_private)
+    <p class="text-sm text-purple-600">🔒︎ Acara ini khusus untuk {{ $event->invitations->count() }} email yang diundang.</p>
+@endif
                 @if ($event->description)
                     <p class="text-gray-700">{{ $event->description }}</p>
                 @endif
