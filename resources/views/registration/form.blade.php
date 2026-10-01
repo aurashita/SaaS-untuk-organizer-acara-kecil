@@ -3,8 +3,13 @@
         <p class="text-xs uppercase tracking-wide text-pink-100 mb-1">Formulir Pendaftaran</p>
         <h1 class="text-xl font-bold">{{ $event->name }}</h1>
         <p class="text-sm text-pink-100 mt-1">
-            📅 {{ \Carbon\Carbon::parse($event->date)->format('d M Y, H:i') }} · 📍 {{ $event->location }}
+            📆 {{ \Carbon\Carbon::parse($event->date)->format('d M Y, H:i') }} · ⚲ {{ $event->location }}
         </p>
+@if ($event->is_private)
+    <span class="inline-block mt-2 text-xs font-medium bg-white/20 px-2.5 py-1 rounded-full">
+        🔒Acara Khusus Undangan
+    </span>
+@endif
     </div>
 
     <div class="space-y-4">
