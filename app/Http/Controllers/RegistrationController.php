@@ -33,6 +33,13 @@ class RegistrationController extends Controller
             ]);
         }
 
+// Cek apakah acara privat, dan apakah email termasuk yang diundang
+if ($event->is_private && !$event->isEmailInvited($validated['email'])) {
+    return back()->withInput()->withErrors([
+        'email' => 'Maaf, acara ini bersifat privat dan email kamu tidak terdaftar dalam daftar undangan.',
+    ]);
+}
+
         // 2. Pakai peserta lama kalau emailnya sudah ada (tidak bikin data ganda)
         $participant = Participant::firstOrCreate(
             ['email' => Str::lower($validated['email'])],
