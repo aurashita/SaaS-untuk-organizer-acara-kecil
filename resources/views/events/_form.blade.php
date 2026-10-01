@@ -47,4 +47,24 @@
             @error('price') <p class="mt-1 text-sm text-red-600">{{ $mesyellow }}</p> @enderror
         </div>
     </div>
+    <div class="pt-2 border-t">
+    <label class="flex items-center gap-2">
+        <input type="checkbox" name="is_private" value="1" id="is_private"
+            {{ old('is_private', $e?->is_private) ? 'checked' : '' }}
+            onchange="document.getElementById('kotak-undangan').classList.toggle('hidden', !this.checked)"
+            class="rounded border-gray-300 text-pink-600 focus:ring-pink-500">
+        <span class="text-sm font-medium text-gray-700">🔒︎ Acara Privat (khusus undangan)</span>
+    </label>
+
+    <div id="kotak-undangan" class="{{ old('is_private', $e?->is_private) ? '' : 'hidden' }} mt-3">
+        <label for="invited_emails" class="block text-sm font-medium text-gray-700 mb-1">
+            Daftar Email yang Diundang
+        </label>
+        <textarea id="invited_emails" name="invited_emails" rows="4"
+            placeholder="Masukkan satu email per baris, contoh:&#10;andi@email.com&#10;budi@email.com"
+            class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500">{{ old('invited_emails', $e?->invitations->pluck('email')->join("\n")) }}</textarea>
+        <p class="mt-1 text-xs text-gray-400">Pisahkan tiap email dengan baris baru (Enter).</p>
+        @error('invited_emails') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+    </div>
+</div>
 </div>
